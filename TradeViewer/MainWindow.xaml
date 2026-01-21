@@ -1,0 +1,59 @@
+<Window x:Class="TradeViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:s="http://schemas.scichart.com/wpf"
+        Title="Trade Viewer" Height="900" Width="1400">
+    <Grid Background="#1E1E1E">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#2D2D30" Padding="12">
+            <DockPanel LastChildFill="True">
+                <TextBlock Foreground="White" FontSize="14" FontWeight="SemiBold" Margin="0,0,12,0"
+                           VerticalAlignment="Center" Text="CSV/Log file:" />
+                <TextBox x:Name="FilePathBox" DockPanel.Dock="Left" Width="900" Height="26"
+                         Margin="0,0,12,0" IsReadOnly="True" />
+                <Button Content="Load" Width="120" Height="28" Click="OnLoadClicked" />
+            </DockPanel>
+        </Border>
+
+        <s:SciChartSurface x:Name="PriceSurface" Grid.Row="1" Background="#0F0F10">
+            <s:SciChartSurface.XAxis>
+                <s:DateTimeAxis x:Name="PriceXAxis" AxisTitle="Time" GrowBy="0.02,0.02" />
+            </s:SciChartSurface.XAxis>
+            <s:SciChartSurface.YAxis>
+                <s:NumericAxis AxisTitle="Price" GrowBy="0.05,0.05" />
+            </s:SciChartSurface.YAxis>
+            <s:SciChartSurface.ChartModifier>
+                <s:ModifierGroup>
+                    <s:RolloverModifier ShowTooltip="True" />
+                    <s:ZoomPanModifier ExecuteOn="MouseLeftButton" />
+                    <s:MouseWheelZoomModifier />
+                    <s:ZoomExtentsModifier />
+                    <s:LegendModifier />
+                </s:ModifierGroup>
+            </s:SciChartSurface.ChartModifier>
+        </s:SciChartSurface>
+
+        <s:SciChartSurface x:Name="SpreadSurface" Grid.Row="2" Background="#0F0F10">
+            <s:SciChartSurface.XAxis>
+                <s:DateTimeAxis x:Name="SpreadXAxis" AxisTitle="Time" GrowBy="0.02,0.02" />
+            </s:SciChartSurface.XAxis>
+            <s:SciChartSurface.YAxis>
+                <s:NumericAxis AxisTitle="Spread" GrowBy="0.1,0.1" />
+            </s:SciChartSurface.YAxis>
+            <s:SciChartSurface.ChartModifier>
+                <s:ModifierGroup>
+                    <s:RolloverModifier ShowTooltip="True" />
+                    <s:ZoomPanModifier ExecuteOn="MouseLeftButton" />
+                    <s:MouseWheelZoomModifier />
+                    <s:ZoomExtentsModifier />
+                    <s:LegendModifier />
+                </s:ModifierGroup>
+            </s:SciChartSurface.ChartModifier>
+        </s:SciChartSurface>
+    </Grid>
+</Window>
